@@ -1,0 +1,54 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block mainbody %}
+
+    <div class="alert alert-success" role="alert">
+      <h2 class="text-center">ResumeUploader</h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+
+          <div class="col">
+            <form action="" method="POST" enctype="multipart/form-data" class="shadow p-5">
+                {% csrf_token %}
+
+                {% for fm in form %}
+                  <div class = "form-group mb-3">
+                   {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+                  </div>
+                 {% endfor %}
+              <input type="submit" value="submit" class ="btn btn-primary">
+            </form>
+
+          </div>
+            
+
+
+
+
+
+          <div class="col-sm-4 ">
+              
+            <h4 class="text-center">List of Candidate</h4>
+            <br>
+            {% for candidate in candidates %}
+            
+              {{candidate.id}}: <a href="{% url 'candidate' candidate.id%}">{{candidate.name}}</a>
+              
+              <br>
+
+              
+
+            {% endfor %}
+
+          </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock mainbody %}

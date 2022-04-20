@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block mainbody %}
+
+<div class ="container shadow p-5">
+  <div class="row">
+        <div class="col">
+          
+          <div class="alert alert-success" role="alert">
+            <h2 class="text-center">Candidate Profile</h2>
+          </div>
+            <div>
+              <div>
+                {% if candidate.profile_image %}
+                  <img src="{{candidate.profile_image.url}}" alt="..." class="img-fluid img-thumbnail float-end mt-2" width= "150" height= "150">
+                {% else %} 
+                  <p>no profile available</p>
+                {% endif %}
+              </div>
+            <p>Name: {{candidate.name}}</p>
+            <p>Gender: {{candidate.gender}}</p>
+            <p>Location: {{candidate.locality}}</p>
+            <p>City: {{candidate.city}}</p>
+            <p>Pin_Code: {{candidate.pin}}</p>
+            <p>State: {{candidate.state}}</p>
+            <p>Phone no: {{candidate.mobile}}</p>
+            <p>Email: {{candidate.email}}</p>
+            <p>Job City: {{candidate.job_city}}</p>
+            {% if candidate.my_file %}
+              <p>Attachment: <a href="{{candidate.my_file.url}}">Download File</a></p>
+            {% else %}
+              <p>no file available</p>
+            {% endif %}
+
+            </div>
+        </div>
+  </div>
+</div>
+
+{% endblock mainbody%}
